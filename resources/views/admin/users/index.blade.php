@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', 'مدیریت مقالات')
+@section('title', 'مدیریت کاربران ادمین')
 @section('content')
 <section class="section">
     <div class="container mx-auto">
-        <h2 class="section-title">مدیریت مقالات</h2>
-        <a href="{{ route('admin.blog.create') }}" class="btn btn-primary mb-4"><i class="fas fa-plus"></i> افزودن مقاله جدید</a>
+        <h2 class="section-title">مدیریت کاربران ادمین</h2>
+        <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-4"><i class="fas fa-plus"></i> ایجاد کاربر جدید</a>
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -15,21 +15,19 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>عنوان</th>
-                        <th>توضیحات</th>
-                        <th>نویسنده</th>
+                        <th>نام</th>
+                        <th>ایمیل</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($posts as $post)
+                    @foreach($users as $user)
                         <tr>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ Str::limit($post->content, 50) }}</td>
-                            <td>{{ $post->author }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ route('admin.blog.edit', $post) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> ویرایش</a>
-                                <form action="{{ route('admin.blog.destroy', $post) }}" method="POST" style="display:inline;">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> ویرایش</a>
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('آیا مطمئن هستید؟')"><i class="fas fa-trash"></i> حذف</button>

@@ -10,7 +10,7 @@ class AdminBlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::all();
         return view('admin.blog.index', compact('posts'));
     }
 
@@ -23,14 +23,17 @@ class AdminBlogController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'icon' => 'required|string|max:255',
-            'date' => 'required|date',
-            'excerpt' => 'required|string',
             'content' => 'required|string',
+            'author' => 'required|string|max:255',
         ]);
 
-        Post::create($request->all());
-        return redirect()->route('admin.blog.index')->with('success', 'مقاله با موفقیت اضافه شد.');
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author' => $request->author,
+        ]);
+
+        return redirect()->route('admin.blog.index')->with('success', 'مقاله با موفقیت ایجاد شد.');
     }
 
     public function edit(Post $post)
@@ -42,13 +45,16 @@ class AdminBlogController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'icon' => 'required|string|max:255',
-            'date' => 'required|date',
-            'excerpt' => 'required|string',
             'content' => 'required|string',
+            'author' => 'required|string|max:255',
         ]);
 
-        $post->update($request->all());
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author' => $request->author,
+        ]);
+
         return redirect()->route('admin.blog.index')->with('success', 'مقاله با موفقیت به‌روزرسانی شد.');
     }
 

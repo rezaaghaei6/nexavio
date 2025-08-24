@@ -1,37 +1,33 @@
 @extends('layouts.admin')
 @section('title', 'ویرایش مقاله')
 @section('content')
-<div class="container">
-    <h2>ویرایش مقاله</h2>
-    <form method="POST" action="{{ route('admin.blog.update', $post) }}">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for="title">عنوان</label>
-            <input type="text" name="title" id="title" value="{{ $post->title }}" required>
-            @error('title') <span class="error">{{ $message }}</span> @enderror
-        </div>
-        <div>
-            <label for="icon">آیکون</label>
-            <input type="text" name="icon" id="icon" value="{{ $post->icon }}" required>
-            @error('icon') <span class="error">{{ $message }}</span> @enderror
-        </div>
-        <div>
-            <label for="date">تاریخ</label>
-            <input type="date" name="date" id="date" value="{{ $post->date }}" required>
-            @error('date') <span class="error">{{ $message }}</span> @enderror
-        </div>
-        <div>
-            <label for="excerpt">خلاصه</label>
-            <textarea name="excerpt" id="excerpt" required>{{ $post->excerpt }}</textarea>
-            @error('excerpt') <span class="error">{{ $message }}</span> @enderror
-        </div>
-        <div>
-            <label for="content">محتوا</label>
-            <textarea name="content" id="content" required>{{ $post->content }}</textarea>
-            @error('content') <span class="error">{{ $message }}</span> @enderror
-        </div>
-        <button type="submit" class="btn btn-primary">به‌روزرسانی</button>
-    </form>
-</div>
+<section class="section">
+    <div class="container mx-auto max-w-lg">
+        <h2 class="section-title">ویرایش مقاله</h2>
+        <form action="{{ route('admin.blog.update', ['blog' => $post->id]) }}" method="POST" class="space-y-6">
+            @csrf
+            @method('PATCH')
+            <div class="form-group">
+                <label for="title">عنوان</label>
+                <input type="text" name="title" id="title" class="form-control" required value="{{ old('title', $post->title) }}">
+                @error('title') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="content">محتوا</label>
+                <textarea name="content" id="content" class="form-control" rows="8" required>{{ old('content', $post->content) }}</textarea>
+                @error('content') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="author_id">نویسنده</label>
+                <select name="author_id" id="author_id" class="form-control" required>
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}" {{ old('author_id', $post->author_id) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                    @endforeach
+                </select>
+                @error('author_id') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <button type="submit" class="btn btn-primary w-full"><i class="fas fa-save"></i> به‌روزرسانی مقاله</button>
+        </form>
+    </div>
+</section>
 @endsection
