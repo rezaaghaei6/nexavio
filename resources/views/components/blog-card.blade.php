@@ -1,13 +1,9 @@
-@props(['post'])
-<div class="blog-card scroll-reveal">
-    <div class="blog-image">
-        <i class="{{ $post->icon }}"></i>
-    </div>
+<div class="blog-card bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
     <div class="blog-content">
-        <div class="blog-date">{{ $post->date }}</div>
+        <div class="blog-date">{{ $post->created_at->format('Y-m-d') }}</div>
         <h3 class="blog-title">{{ $post->title }}</h3>
-        <p class="blog-excerpt">{{ $post->excerpt }}</p>
-        <a href="{{ route('blog.show', $post) }}" class="read-more">
+        <p class="blog-excerpt">{{ Str::limit($post->content, 100) }}</p>
+        <a href="{{ route('public.blog.show', $post) }}" class="read-more">
             ادامه مطلب
             <i class="fas fa-arrow-left"></i>
         </a>

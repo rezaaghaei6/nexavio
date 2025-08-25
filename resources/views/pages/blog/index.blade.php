@@ -13,7 +13,7 @@
             @endforeach
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="{{ route('blog') }}" class="btn btn-primary">مشاهده همه مقالات</a>
+            <a href="{{ route('public.blog') }}" class="btn btn-primary">مشاهده همه مقالات</a>
         </div>
     </div>
 </section>

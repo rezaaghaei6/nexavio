@@ -23,12 +23,17 @@ class AdminServiceController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'icon' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
         Service::create($request->all());
-        return redirect()->route('admin.services.index')->with('success', 'خدمت با موفقیت اضافه شد.');
+
+        return redirect()->route('admin.services.index')->with('success', 'خدمت با موفقیت ایجاد شد.');
+    }
+
+    public function show(Service $service)
+    {
+        return view('admin.services.show', compact('service'));
     }
 
     public function edit(Service $service)
@@ -40,17 +45,18 @@ class AdminServiceController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'icon' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
         $service->update($request->all());
-        return redirect()->route('admin.services.index')->with('success', 'خدمت با موفقیت به‌روزرسانی شد.');
+
+        return redirect()->route('admin.services.index')->with('success', 'خدمت با موفقیت ویرایش شد.');
     }
 
     public function destroy(Service $service)
     {
         $service->delete();
+
         return redirect()->route('admin.services.index')->with('success', 'خدمت با موفقیت حذف شد.');
     }
 }

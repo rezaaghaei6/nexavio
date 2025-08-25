@@ -40,20 +40,20 @@
                 <div class="footer-section">
                     <h3>خدمات</h3>
                     <ul>
-                        <li><a href="{{ route('services') }}">توسعه وب اپلیکیشن</a></li>
-                        <li><a href="{{ route('services') }}">هوش مصنوعی</a></li>
-                        <li><a href="{{ route('services') }}">API Development</a></li>
-                        <li><a href="{{ route('services') }}">سیستم‌های املاک</a></li>
-                        <li><a href="{{ route('services') }}">مشاوره فنی</a></li>
+                        <li><a href="{{ route('public.services') }}">توسعه وب اپلیکیشن</a></li>
+                        <li><a href="{{ route('public.services') }}">هوش مصنوعی</a></li>
+                        <li><a href="{{ route('public.services') }}">API Development</a></li>
+                        <li><a href="{{ route('public.services') }}">سیستم‌های املاک</a></li>
+                        <li><a href="{{ route('public.services') }}">مشاوره فنی</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>لینک‌های مفید</h3>
                     <ul>
-                        <li><a href="{{ route('about') }}">درباره ما</a></li>
-                        <li><a href="{{ route('portfolio') }}">نمونه کارها</a></li>
-                        <li><a href="{{ route('blog') }}">مقالات</a></li>
-                        <li><a href="{{ route('contact') }}">تماس با ما</a></li>
+                        <li><a href="{{ route('public.about') }}">درباره ما</a></li>
+                        <li><a href="{{ route('public.portfolio') }}">نمونه کارها</a></li>
+                        <li><a href="{{ route('public.blog') }}">مقالات</a></li>
+                        <li><a href="{{ route('public.contact') }}">تماس با ما</a></li>
                         <li><a href="#">حریم خصوصی</a></li>
                     </ul>
                 </div>

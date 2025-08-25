@@ -1,15 +1,17 @@
 @extends('layouts.app')
+
 @section('title', 'صفحه اصلی')
+
 @section('content')
 <section class="hero" id="home">
     <div class="hero-container">
         <h1 class="fade-in-up">نکساویو، آینده نرم‌افزار</h1>
         <p class="fade-in-up">ما در نکساویو، متخصص توسعه نرم‌افزارهای وب‌محور، برنامه‌نویسی و هوش مصنوعی هستیم. با تمرکز بر فریم‌ورک Laravel، راه‌حل‌های قدرتمند و نوآورانه ارائه می‌دهیم.</p>
         <div class="cta-buttons fade-in-up">
-            <a href="{{ route('contact') }}" class="btn btn-primary">
+            <a href="{{ route('public.contact') }}" class="btn btn-primary">
                 <i class="fas fa-rocket"></i> شروع پروژه
             </a>
-            <a href="{{ route('portfolio') }}" class="btn btn-secondary">
+            <a href="{{ route('public.portfolio') }}" class="btn btn-secondary">
                 <i class="fas fa-eye"></i> مشاهده نمونه کارها
             </a>
         </div>
@@ -19,12 +21,18 @@
 <section class="stats">
     <div class="stats-container">
         <div class="stats-grid">
-            @foreach($stats as $stat)
-                <div class="stat-item scroll-reveal">
-                    <div class="stat-number">{{ $stat['number'] }}</div>
-                    <div class="stat-label">{{ $stat['label'] }}</div>
-                </div>
-            @endforeach
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">{{ count($services) }}</div>
+                <div class="stat-label">خدمات</div>
+            </div>
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">{{ count($portfolios) }}</div>
+                <div class="stat-label">نمونه‌کارها</div>
+            </div>
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">{{ count($posts) }}</div>
+                <div class="stat-label">پست‌ها</div>
+            </div>
         </div>
     </div>
 </section>
@@ -55,7 +63,7 @@
             @endforeach
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="{{ route('contact') }}" class="btn btn-primary">مشاهده همه نمونه کارها</a>
+            <a href="{{ route('public.portfolio') }}" class="btn btn-primary">مشاهده همه نمونه کارها</a>
         </div>
     </div>
 </section>
@@ -72,7 +80,7 @@
             @endforeach
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="{{ route('blog') }}" class="btn btn-primary">مشاهده همه مقالات</a>
+            <a href="{{ route('public.blog') }}" class="btn btn-primary">مشاهده همه مقالات</a>
         </div>
     </div>
 </section>

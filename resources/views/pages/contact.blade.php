@@ -4,7 +4,7 @@
 <section class="hero">
     <div class="hero-container">
         <h1 class="fade-in-up">تماس با ما</h1>
-        <form method="POST" action="{{ route('contact.store') }}">
+        <form method="POST" action="{{ route('public.contact.store') }}">
             @csrf
             <div>
                 <label for="name">نام</label>

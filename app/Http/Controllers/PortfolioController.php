@@ -2,46 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller
+class PortfolioController extends Controller
 {
-    public function edit()
+    /**
+     * Display a listing of the portfolio items.
+     */
+    public function index()
     {
-        $user = Auth::user();
-        return view('profile.edit', compact('user'));
+        $portfolios = Portfolio::all();
+        return view('pages.portfolio', compact('portfolios'));
     }
 
-    public function update(Request $request)
+    /**
+     * Display the specified portfolio item.
+     */
+    public function show(Portfolio $portfolio)
     {
-        $user = Auth::user();
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
-        ]);
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
-        }
-
-        $user->save();
-
-        return redirect()->route('profile.edit')->with('success', 'پروفایل شما با موفقیت بروزرسانی شد.');
-    }
-
-    public function destroy(Request $request)
-    {
-        $user = Auth::user();
-        Auth::logout();
-        $user->delete();
-
-        return redirect('/')->with('success', 'حساب شما با موفقیت حذف شد.');
+        return view('pages.portfolio', compact('portfolio'));
     }
 }

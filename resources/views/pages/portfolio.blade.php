@@ -13,7 +13,7 @@
             @endforeach
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="{{ route('contact') }}" class="btn btn-primary">مشاهده همه نمونه کارها</a>
+            <a href="{{ route('public.contact') }}" class="btn btn-primary">مشاهده همه نمونه کارها</a>
         </div>
     </div>
 </section>

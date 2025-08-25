@@ -11,7 +11,7 @@
                 <div class="blog-date">{{ $post->date }}</div>
                 <h3 class="blog-title">{{ $post->title }}</h3>
                 <p>{!! $post->content !!}</p>
-                <a href="{{ route('blog') }}" class="read-more">بازگشت به مقالات</a>
+                <a href="{{ route('public.blog') }}" class="read-more">بازگشت به مقالات</a>
             </div>
         </div>
     </div>
