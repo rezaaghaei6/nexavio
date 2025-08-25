@@ -4,15 +4,16 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class Admin
 {
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user() || !Auth::user()->is_admin) {
-            return redirect()->route('public.home')->with('error', 'دسترسی غیرمجاز.');
+        if (auth()->check() && auth()->user()->is_admin) {
+            return $next($request);
         }
-        return $next($request);
+
+        return redirect('/')->with('error', 'شما دسترسی به پنل ادمین ندارید!');
     }
 }
