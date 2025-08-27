@@ -14,11 +14,46 @@
                 <h3 class="text-lg font-semibold text-primary-color">پنل ادمین</h3>
             </div>
             <ul class="nav-menu">
-                <li><a href="{{ route('admin.dashboard') }}" class="{{ Route::is('admin.dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> داشبورد</a></li>
-                <li><a href="{{ route('admin.services.index') }}" class="{{ Route::is('admin.services.*') ? 'active' : '' }}"><i class="fas fa-cogs"></i> خدمات</a></li>
-                <li><a href="{{ route('admin.portfolio.index') }}" class="{{ Route::is('admin.portfolio.*') ? 'active' : '' }}"><i class="fas fa-briefcase"></i> نمونه‌کارها</a></li>
-                <li><a href="{{ route('admin.blog.index') }}" class="{{ Route::is('admin.blog.*') ? 'active' : '' }}"><i class="fas fa-newspaper"></i> مقالات</a></li>
-                <li><a href="{{ route('admin.users.index') }}" class="{{ Route::is('admin.users.*') ? 'active' : '' }}"><i class="fas fa-users"></i> کاربران ادمین</a></li>
+                <li>
+                    <a href="{{ route('admin.dashboard') }}" class="{{ Route::is('admin.dashboard') ? 'active' : '' }}">
+                        <i class="fas fa-tachometer-alt"></i> داشبورد
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.services.index') }}" class="{{ Route::is('admin.services.*') ? 'active' : '' }}">
+                        <i class="fas fa-cogs"></i> خدمات
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.portfolio.index') }}" class="{{ Route::is('admin.portfolio.*') ? 'active' : '' }}">
+                        <i class="fas fa-briefcase"></i> نمونه‌کارها
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.blog.index') }}" class="{{ Route::is('admin.blog.*') ? 'active' : '' }}">
+                        <i class="fas fa-newspaper"></i> مقالات
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.categories.index') }}" class="{{ Route::is('admin.categories.*') ? 'active' : '' }}">
+                        <i class="fas fa-folder"></i> دسته‌بندی‌ها
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.users.index') }}" class="{{ Route::is('admin.users.*') ? 'active' : '' }}">
+                        <i class="fas fa-users"></i> کاربران ادمین
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.team-members.index') }}" class="{{ Route::is('admin.team-members.*') ? 'active' : '' }}">
+                        <i class="fas fa-user-friends"></i> اعضای تیم
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.logs.index') }}" class="{{ Route::is('admin.logs.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-alt"></i> لاگ‌ها
+                    </a>
+                </li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -27,19 +62,26 @@
                 </li>
             </ul>
         </aside>
-        <button class="sidebar-toggle" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+
+        <button class="sidebar-toggle" id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <main class="admin-content" id="admin-content">
             @yield('content')
         </main>
     </div>
+
     <script>
-        document.getElementById('sidebar-toggle').addEventListener('click', () => {
-            const sidebar = document.getElementById('sidebar');
-            const content = document.getElementById('admin-content');
-            const toggle = document.getElementById('sidebar-toggle');
+        // Toggle sidebar
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('admin-content');
+
+        sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('expanded');
-            toggle.classList.toggle('collapsed');
+            sidebarToggle.classList.toggle('collapsed');
         });
     </script>
 </body>

@@ -59,13 +59,16 @@
                 </div>
                 <div class="footer-section">
                     <h3>اطلاعات تماس</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> باکو، آذربایجان</p>
-                    <p><i class="fas fa-phone"></i> +994 XX XXX XX XX</p>
-                    <p><i class="fas fa-envelope"></i> info@nexavio.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ایران</p>
+                    <div class="flex flex-col space-y-1">
+                        <p><i class="fas fa-phone"></i> 09383734295</p>
+                        <p><i class="fas fa-phone"></i> 099101740239</p>
+                    </div>
+                    <p><i class="fas fa-envelope"></i> nexaviogroup@gmail.com</p>
                     <p><i class="fas fa-clock"></i> شنبه تا پنج‌شنبه: 9:00 - 18:00</p>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom text-center mt-6">
                 <p>&copy; 1403 نکساویو. تمامی حقوق محفوظ است.</p>
             </div>
         </div>

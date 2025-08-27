@@ -1,32 +1,64 @@
 @extends('layouts.admin')
-@section('title', 'ویرایش مقاله')
+
 @section('content')
 <section class="section">
-    <div class="container mx-auto max-w-lg">
-        <h2 class="section-title">ویرایش مقاله</h2>
-        <form action="{{ route('admin.blog.update', ['blog' => $post->id]) }}" method="POST" class="space-y-6">
+    <div class="container mx-auto max-w-2xl">
+        <h2 class="section-title text-2xl font-bold mb-6">ویرایش مقاله</h2>
+
+        {{-- فرم ویرایش مقاله --}}
+        <form action="{{ route('admin.blog.update', $post) }}" method="POST" class="space-y-6">
             @csrf
-            @method('PATCH')
+            @method('PUT')
+
+            {{-- عنوان --}}
             <div class="form-group">
-                <label for="title">عنوان</label>
-                <input type="text" name="title" id="title" class="form-control" required value="{{ old('title', $post->title) }}">
-                @error('title') <span class="text-danger">{{ $message }}</span> @enderror
+                <label for="title" class="block mb-2 font-semibold">عنوان</label>
+                <input type="text" name="title" id="title"
+                       class="w-full border rounded-lg p-2"
+                       required
+                       value="{{ old('title', $post->title) }}">
+                @error('title')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
+
+            {{-- دسته‌بندی --}}
             <div class="form-group">
-                <label for="content">محتوا</label>
-                <textarea name="content" id="content" class="form-control" rows="8" required>{{ old('content', $post->content) }}</textarea>
-                @error('content') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="author_id">نویسنده</label>
-                <select name="author_id" id="author_id" class="form-control" required>
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}" {{ old('author_id', $post->author_id) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                <label for="category_id" class="block mb-2 font-semibold">دسته‌بندی</label>
+                <select name="category_id" id="category_id"
+                        class="w-full border rounded-lg p-2">
+                    <option value="">بدون دسته‌بندی</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"
+                            {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
-                @error('author_id') <span class="text-danger">{{ $message }}</span> @enderror
+                @error('category_id')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary w-full"><i class="fas fa-save"></i> به‌روزرسانی مقاله</button>
+
+            {{-- محتوا --}}
+            <div class="form-group">
+                <label for="content" class="block mb-2 font-semibold">محتوا</label>
+                <textarea name="content" id="content" rows="6"
+                          class="w-full border rounded-lg p-2">{{ old('content', $post->content) }}</textarea>
+                @error('content')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- دکمه‌ها --}}
+            <div class="flex items-center gap-4">
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                    بروزرسانی
+                </button>
+                <a href="{{ route('admin.blog.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg">
+                    بازگشت
+                </a>
+            </div>
         </form>
     </div>
 </section>

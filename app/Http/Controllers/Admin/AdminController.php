@@ -18,4 +18,10 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('services_count', 'portfolios_count', 'posts_count'));
     }
+    public function logs()
+{
+    $logs = \App\Models\AdminLog::latest()->paginate(20);
+    return view('admin.logs.index', compact('logs'));
 }
+}
+
